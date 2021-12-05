@@ -27,7 +27,7 @@
                 <label for="to" class="tw-font-bold">To</label>
                 <input  wire:key="5" type="date"  wire:model.defer="endDate"  id="to" 
                                class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
-                <button onclick="loadProviders()" type="button" wire:click.prevent="search"
+                <button  type="button" wire:click.prevent="search"
                    class="btn btn-info btn-sm mr-1 text-white btn-sm tw-mt-3">Search</button>
                 </div>
                    <div class="col">
@@ -69,3 +69,11 @@
    </table>
  
 </div>
+<script>
+    const d = new Date();
+    const a = d.getFullYear() + “-” + d.getMonth() +  “-” + d.getDate();
+    document.getElementById("to").setAttribute("max", a);
+    document.getElementById("to").setAttribute("min", event.detail.minDate);
+    document.getElementById("to").setAttribute("value", a);
+        console.log(event.detail.maxDate ,event.detail.minDate);
+</script>
