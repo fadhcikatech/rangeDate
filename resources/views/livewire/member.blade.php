@@ -25,9 +25,9 @@
                     class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
                     
                 <label for="to" class="tw-font-bold">To</label>
-                <input wire:ignore wire:key="5" type="date"  wire:model.defer="endDate"  id="to" 
+                <input  wire:key="5" type="date"  wire:model.defer="endDate"  id="to" 
                                class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
-                <button wire:ignore onclick="loadProviders()" type="button" wire:click.prevent="search"
+                <button onclick="loadProviders()" type="button" wire:click.prevent="search"
                    class="btn btn-info btn-sm mr-1 text-white btn-sm tw-mt-3">Search</button>
                 </div>
                    <div class="col">
@@ -42,7 +42,6 @@
            <tr>
                <th scope="col">#</th>
                <th scope="col">Name</th>
-               <th scope="col">Code</th>
                <th scope="col">Email</th>
                <th scope="col">Alamat</th>
                <th scope="col">Hobby</th>
@@ -56,7 +55,6 @@
            <tr>
                <th scope="row">{{$no++}}</th>
                <td>{{$member->name}}</td>
-               <td>{{$member->phone}}</td>
                <td>{{$member->email}}</td>
                <td>{{$member->alamat}}</td>
                <td>{{$member->hobby}}</td>

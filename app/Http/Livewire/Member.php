@@ -37,6 +37,7 @@ class Member extends Component
             $this->endDate = Carbon::parse($this->endDate)->format('Y-m-d');
             $newResult = $startDate->addDays(30);
             $endDate->subDays(30); 
+            
         }
         return view('livewire.member' , [
             'member' => $this->search == null ?
