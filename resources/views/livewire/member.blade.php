@@ -19,7 +19,18 @@
                 <option value="15">20</option>
             </select>
         </div>
-        <div class="col">
+        <div class="md-3">
+        <label for="from" class="tw-font-bold ml-3">From</label>
+                <input wire:ignore wire:key="4" type="date" wire:change="$emit('changeDateValue')"    wire:model.defer="startDate" id="from"
+                    class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
+                    
+                <label for="to" class="tw-font-bold">To</label>
+                <input wire:ignore wire:key="5" type="date"  wire:model.defer="endDate"  id="to" 
+                               class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
+                <button wire:ignore onclick="loadProviders()" type="button" wire:click.prevent="search"
+                   class="btn btn-info btn-sm mr-1 text-white btn-sm tw-mt-3">Search</button>
+                </div>
+                   <div class="col">
             <input wire:model="search" type="text" class="form-control form-control-sm" placeholder="Search">
         </div>
     </div>
@@ -58,5 +69,5 @@
             @endforeach
        </tbody>
    </table>
-   {{ $member->links() }}
+ 
 </div>

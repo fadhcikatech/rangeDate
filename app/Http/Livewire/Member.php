@@ -10,6 +10,10 @@ class Member extends Component
     public $statusUpdate = false;
     public $paginate = 20;
     public $search;
+    public $enableSearch = false;
+    public $startDate;
+    public $endDate;
+    public $minDate;
     
     protected $listeners = [
         'contactStored' => 'handleStored',
@@ -25,6 +29,15 @@ class Member extends Component
     
     public function render()
     {
+        $data = MemberModel::query();
+        
+        if($this->startDate && $this->endDate && $this->enableSearch)
+        {
+            $this->startDate = Carbon::createFromDate($this->startDate)->format('Y-m-d');
+            $this->endDate = Carbon::parse($this->endDate)->format('Y-m-d');
+            $newResult = $startDate->addDays(30);
+            $endDate->subDays(30); 
+        }
         return view('livewire.member' , [
             'member' => $this->search == null ?
             MemberModel::latest()->paginate($this->paginate) :
@@ -32,7 +45,11 @@ class Member extends Component
             'member' => MemberModel::paginate(20),
         ]);
     }
-    
+    public function search()
+    {
+        $this->enableSearch = true;
+        
+    }
     public function getMember($id) 
     {
         $this->statusUpdate = true;
