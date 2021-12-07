@@ -46,15 +46,15 @@ class Member extends Component
         $this->maxDate = $newResult;
         $this->endDate = $newResult;
 
-        // if($date->month == now()->month)
-        // {
-        //     $this->endDate = now()->format('Y-m-d');
-        //     $this->dispatchBrowserEvent('changeDateValue' , [
-        //         'maxDate' => now()->format('Y-m-d'),
-        //         'minDate' => $this->minDate
-        //     ]);
-        //     return;
-        // }
+        if($date->month === now()->month)
+        {
+            $this->endDate = now()->format('Y-m-d');
+            $this->dispatchBrowserEvent('changeDateValue' , [
+                'maxDate' => now()->format('Y-m-d'),
+                'minDate' => $this->minDate
+            ]);
+            return;
+        }
         $this->dispatchBrowserEvent('changeDateValue' , [
             'maxDate' => $this->maxDate,
             'minDate' => $this->minDate
@@ -83,12 +83,18 @@ class Member extends Component
         {
             $startDate = Carbon::parse($this->startDate)->format('Y-m-d');
             $endDate = Carbon::parse($this->endDate)->format('Y-m-d');
-            $query->where(function ($last){
-                $last->whereBetween('users.created_at' , [now(), now()])->get();
+            $query->where(function ($last) use ($startDate, $endDate){
+                $last->whereBetween('users.created_at' , [$startDate , $endDate]);
             });
-            
-
+            return;
         }
+        else
+        {
+            $query->where(function ($last) {
+                $last->whereBetween('users.created_at' , [now() , now()]);
+            });
+        }
+        
         
         return view('livewire.member' , [
             'member' => $this->search == null ?
