@@ -46,15 +46,15 @@ class Member extends Component
         $this->maxDate = $newResult;
         $this->endDate = $newResult;
 
-        if($date->month === now()->month)
-        {
-            $this->endDate = now()->format('Y-m-d');
-            $this->dispatchBrowserEvent('changeDateValue' , [
-                'maxDate' => now()->format('Y-m-d'),
-                'minDate' => $this->minDate
-            ]);
-            return;
-        }
+        // if($date->month === now()->month)
+        // {
+        //     $this->endDate = now()->format('Y-m-d');
+        //     $this->dispatchBrowserEvent('changeDateValue' , [
+        //         'maxDate' => now()->format('Y-m-d'),
+        //         'minDate' => $this->minDate
+        //     ]);
+        //     return;
+        // }
         $this->dispatchBrowserEvent('changeDateValue' , [
             'maxDate' => $this->maxDate,
             'minDate' => $this->minDate
@@ -94,7 +94,7 @@ class Member extends Component
                 $last->whereBetween('users.created_at' , [now() , now()]);
             });
         }
-        
+        // $detailData = $query()->get();
         
         return view('livewire.member' , [
             'member' => $this->search == null ?
