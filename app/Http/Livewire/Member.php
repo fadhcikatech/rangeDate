@@ -42,23 +42,39 @@ class Member extends Component
         $newResult =  $afterParse->addDays(30)->format('Y-m-d');
         $newResultMinDate =  $afterParse->subDays(30)->format('Y-m-d');
         $this->minDate = $afterParse->format('Y-m-d');  
+        
         $this->maxDate = $newResult;
-        $this->toDate = $newResult;
+        $this->endDate = $newResult;
+
+        // if($date->month == now()->month)
+        // {
+        //     $this->endDate = now()->format('Y-m-d');
+        //     $this->dispatchBrowserEvent('changeDateValue' , [
+        //         'maxDate' => now()->format('Y-m-d'),
+        //         'minDate' => $this->minDate
+        //     ]);
+        //     return;
+        // }
+        $this->dispatchBrowserEvent('changeDateValue' , [
+            'maxDate' => $this->maxDate,
+            'minDate' => $this->minDate
+        ]);
     }
-    public function testLastDays(): void
-    {
-        $model1 = User::create(['created_at' => Carbon::now()->subDays(29)]);
-        $model2 = User::create(['created_at' => Carbon::now()->subDays(30)]);
-        // $model3 = User::create(['created_at' => Carbon::now()->subDays(8)]);
+    // public function testLastDays(): void
+    // {
+    //     $model1 = User::create(['created_at' => Carbon::now()->subDays(29)]);
+    //     $model2 = User::create(['created_at' => Carbon::now()->subDays(30)]);
+    //     // $model3 = User::create(['created_at' => Carbon::now()->subDays(8)]);
 
-        $result = User::lastDays(29)->get();
+    //     $result = User::lastDays(29)->get();
 
-        $this->assertEquals(1, $result->count());
-        $this->assertEquals($model2->id, $result->first()->id);
-    }
-
+    //     $this->assertEquals(1, $result->count());
+    //     $this->assertEquals($model2->id, $result->first()->id);
+    // }
+    
     public function render()
     {
+        // dd($search);
         $minDate = Carbon::now()->addDays(30)->format('Y-m-d');
         $maxDate = Carbon::now()->subDays(30)->format('Y-m-d');
         //query
@@ -70,7 +86,7 @@ class Member extends Component
             $query->where(function ($last){
                 $last->whereBetween('users.created_at' , [now(), now()])->get();
             });
-            dd($startDate);
+            
 
         }
         

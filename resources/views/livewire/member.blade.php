@@ -21,11 +21,11 @@
         </div>
         <div class="md-3">
         <label for="from" class="tw-font-bold ml-3">From</label>
-                <input  wire:key="4" type="date" wire:change="$emit('changeDateValue')"    wire:model.defer="startDate"  id="from"
+                <input  wire:key="4" type="date" wire:change="$emit('changeDateValue')"   max="{{$maxDate}}" wire:model.defer="startDate"  id="from"
                     class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
                     
                 <label for="to" class="tw-font-bold">To</label>
-                <input  wire:key="5" type="date"  wire:model.defer="endDate"  id="to" 
+                <input  wire:key="5" type="date"   wire:model.defer="endDate" min="{{$minDate}}" max="{{$maxDate}}" id="to" 
                                class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
                 <button  type="button" wire:click.prevent="search"
                    class="btn btn-info btn-sm mr-1 text-white btn-sm tw-mt-3">Search</button>
@@ -67,11 +67,24 @@
    </table>
  
 </div>
+<script type="text/javascript">
+     $(document).ready( function () {
+        let from = document.querySelector('#from');
+        let to = document.querySelector('#to');
+        from.value = new Date().toISOString().split('T')[0]
+        to.value = new Date().toISOString().split('T')[0]
+        from.dispatchEvent(new Event('input'))
+        to.dispatchEvent(new Event('input'))
+
+    })
+</script>
 <script>
-    const d = new Date();
-    const a = d.getFullYear() + “-” + d.getMonth() +  “-” + d.getDate();
-    document.getElementById("to").setAttribute("max", a);
+// Change Max Date on the html dom by directly listen the event 
+window.addEventListener('changeDateValue', event => {
+    document.getElementById("to").setAttribute("max", event.detail.maxDate);
+    document.getElementById("from").setAttribute("max", event.detail.maxDate);
+
     document.getElementById("to").setAttribute("min", event.detail.minDate);
-    document.getElementById("to").setAttribute("value", a);
-        console.log(event.detail.maxDate ,event.detail.minDate);
+    // document.getElementById("from").setAttribute("min", event.detail.minDate);
+})
 </script>
