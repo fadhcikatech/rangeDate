@@ -21,11 +21,11 @@
         </div>
         <div class="md-3">
         <label for="from" class="tw-font-bold ml-3">From</label>
-                <input  wire:key="4" type="date" wire:change="$emit('changeDateValue')"   max="{{$maxDate}}" wire:model.defer="startDate"  id="from"
+                <input wire:ignore wire:key="4" type="date" wire:change="$emit('changeDateValue')"   max="{{$maxDate}}" wire:model.defer="startDate" id="from"
                     class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
                     
                 <label for="to" class="tw-font-bold">To</label>
-                <input  wire:key="5" type="date"   wire:model.defer="endDate" min="{{$minDate}}" max="{{$maxDate}}" id="to" 
+                <input wire:ignore wire:key="5" type="date"  wire:model.defer="endDate" min="{{$minDate}}" max="{{$maxDate}}" id="to"  
                                class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
                 <button  type="button" wire:click.prevent="search"
                    class="btn btn-info btn-sm mr-1 text-white btn-sm tw-mt-3">Search</button>
