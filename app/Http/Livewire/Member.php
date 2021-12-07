@@ -7,10 +7,12 @@ use App\User;
 use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
+use Livewire\WithPagination;
 
 class Member extends Component
 {
-  
+    use WithPagination;
+
     public $statusUpdate = false;
     public $paginate = 20;
     public $search;
@@ -46,15 +48,15 @@ class Member extends Component
         $this->maxDate = $newResult;
         $this->endDate = $newResult;
 
-        // if($date->month === now()->month)
-        // {
-        //     $this->endDate = now()->format('Y-m-d');
-        //     $this->dispatchBrowserEvent('changeDateValue' , [
-        //         'maxDate' => now()->format('Y-m-d'),
-        //         'minDate' => $this->minDate
-        //     ]);
-        //     return;
-        // }
+        if($date->month === now()->month)
+        {
+            $this->endDate = now()->format('Y-m-d');
+            $this->dispatchBrowserEvent('changeDateValue' , [
+                'maxDate' => now()->format('Y-m-d'),
+                'minDate' => $this->minDate
+            ]);
+            return;
+        }
         $this->dispatchBrowserEvent('changeDateValue' , [
             'maxDate' => $this->maxDate,
             'minDate' => $this->minDate
@@ -74,7 +76,7 @@ class Member extends Component
     
     public function render()
     {
-        // dd($search);
+        // dd($query);
         $minDate = Carbon::now()->addDays(30)->format('Y-m-d');
         $maxDate = Carbon::now()->subDays(30)->format('Y-m-d');
         //query
@@ -87,6 +89,7 @@ class Member extends Component
                 $last->whereBetween('users.created_at' , [$startDate , $endDate]);
             });
             return;
+            // dd($query);
         }
         else
         {

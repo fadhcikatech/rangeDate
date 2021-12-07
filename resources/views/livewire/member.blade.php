@@ -34,7 +34,7 @@
             <input wire:model="search" type="text" class="form-control form-control-sm" placeholder="Search">
         </div>
     </div>
-  
+    {{-- {{$paginate}} --}}
     <hr>
 
    <table class="table table-bordered table-striped">
@@ -50,34 +50,25 @@
        </thead>
        <tbody>
            <?php $no =1; ?>
-           @foreach ($member as $member)
+           @foreach ($member as $members)
            <tr>
                <th scope="row">{{$no++}}</th>
-               <td>{{$member->name}}</td>
-               <td>{{$member->email}}</td>
-               <td>{{$member->active}}</td>
-               <td>{{$member->created_at}}</td>
+               <td>{{$members->name}}</td>
+               <td>{{$members->email}}</td>
+               <td>{{$members->active}}</td>
+               <td>{{$members->created_at}}</td>
                <td>
-                   <button wire:click="getMember({{$member->id}})" class="btn btn-sm btn-info text-white">Edit</button>
-                   <button wire:click="destroy({{$member->id}})" class="btn btn-sm btn-danger text-white">Delete</button>
+                   <button wire:click="getMember({{$members->id}})" class="btn btn-sm btn-info text-white">Edit</button>
+                   <button wire:click="destroy({{$members->id}})" class="btn btn-sm btn-danger text-white">Delete</button>
                 </td>
             </tr>
             @endforeach
        </tbody>
    </table>
- 
+   {{$member->links()}}
+   {{-- {{$contacts->links('pagination::bootstrap-4')}} --}}
 </div>
-<script type="text/javascript">
-     $(document).ready( function () {
-        let from = document.querySelector('#from');
-        let to = document.querySelector('#to');
-        from.value = new Date().toISOString().split('T')[0]
-        to.value = new Date().toISOString().split('T')[0]
-        from.dispatchEvent(new Event('input'))
-        to.dispatchEvent(new Event('input'))
-
-    })
-</script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 // Change Max Date on the html dom by directly listen the event 
 window.addEventListener('changeDateValue', event => {
@@ -86,5 +77,14 @@ window.addEventListener('changeDateValue', event => {
 
     document.getElementById("to").setAttribute("min", event.detail.minDate);
     // document.getElementById("from").setAttribute("min", event.detail.minDate);
-})
+});
+$(document).ready( function () {
+        let from = document.querySelector('#from');
+        let to = document.querySelector('#to');
+        from.value = new Date().toISOString().split('T')[0]
+        to.value = new Date().toISOString().split('T')[0]
+        from.dispatchEvent(new Event('input'))
+        to.dispatchEvent(new Event('input'))
+
+    })
 </script>
