@@ -21,7 +21,7 @@
         </div>
         <div class="md-3">
         <label for="from" class="tw-font-bold ml-3">From</label>
-                <input wire:ignore wire:key="4" type="date" wire:change="$emit('changeDateValue')"    wire:model.defer="startDate" id="from"
+                <input  wire:key="4" type="date" wire:change="$emit('changeDateValue')"    wire:model.defer="startDate"  id="from"
                     class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
                     
                 <label for="to" class="tw-font-bold">To</label>
@@ -43,8 +43,7 @@
                <th scope="col">#</th>
                <th scope="col">Name</th>
                <th scope="col">Email</th>
-               <th scope="col">Alamat</th>
-               <th scope="col">Hobby</th>
+               <th scope="col">Active</th> 
                <th scope="col">Time</th>
                <th scope="col">Aksi</th>
            </tr>
@@ -56,8 +55,7 @@
                <th scope="row">{{$no++}}</th>
                <td>{{$member->name}}</td>
                <td>{{$member->email}}</td>
-               <td>{{$member->alamat}}</td>
-               <td>{{$member->hobby}}</td>
+               <td>{{$member->active}}</td>
                <td>{{$member->created_at}}</td>
                <td>
                    <button wire:click="getMember({{$member->id}})" class="btn btn-sm btn-info text-white">Edit</button>
