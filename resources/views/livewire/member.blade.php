@@ -67,7 +67,7 @@
 </div>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-// Change Max Date on the html dom by directly listen the event 
+
 window.addEventListener('changeDateValue', event => {
     document.getElementById("to").setAttribute("max", event.detail.maxDate);
     // document.getElementById("from").setAttribute("max", event.detail.maxDate);
@@ -75,13 +75,4 @@ window.addEventListener('changeDateValue', event => {
     document.getElementById("to").removeAttribute("disabled");
     // document.getElementById("from").setAttribute("min", event.detail.minDate);
 });
-$(document).ready( function () {
-        let from = document.querySelector('#from');
-        let to = document.querySelector('#to');
-        from.value = new Date().toISOString().split('T')[0]
-        to.value = new Date().toISOString().split('T')[0]
-        from.dispatchEvent(new Event('input'))
-        to.dispatchEvent(new Event('input'))
-        
-    })
 </script>

@@ -46,7 +46,7 @@ class Member extends Component
         $this->maxDate = $newResult;
         $this->endDate = $newResult;
 
-        if($date->month == now()->month )
+        if($date->month == now()->month)
         {
             $this->endDate = now()->format('Y-m-d');
             $this->dispatchBrowserEvent('changeDateValue' , [
@@ -54,12 +54,23 @@ class Member extends Component
                 'minDate' => $this->minDate
             ]);
             return;
-        } elseif ($date->month !== now()->month)
+        }
+        //di bulan yang berbeda 
+        if ($date->month !== now()->month )
         {
             
             $this->endDate = now()->format('Y-m-d');
             $this->dispatchBrowserEvent('changeDateValue' , [
                 'maxDate' => now()->format('Y-m-d'),
+                'minDate' => $this->minDate
+            ]);
+            return;
+        }
+        if ($date->month == now()->addDays(30)->month)
+        {
+            $this->endDate = $newResult;
+            $this->dispatchBrowserEvent('changeDateValue' , [
+                'maxDate' => $this->maxDate,
                 'minDate' => $this->minDate
             ]);
             return;
