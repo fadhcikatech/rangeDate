@@ -46,7 +46,7 @@ class Member extends Component
         $this->maxDate = $newResult;
         $this->endDate = $newResult;
 
-        if($date->month === now()->month)
+        if($date->month == now()->month)
         {
             $this->endDate = now()->format('Y-m-d');
             $this->dispatchBrowserEvent('changeDateValue' , [
@@ -67,11 +67,11 @@ class Member extends Component
         $this->minDate = Carbon::now()->subDays(30)->format('Y-m-d');
         // $minDate = Carbon::now()->subDays(30)->format('Y-m-d');
         // $maxDate = Carbon::now()->addDays(30)->format('Y-m-d');
-        // dd($this->maxDate);
+        // dd($this->maxDate , $this->minDate);
         //query
         $query = User::query();
-        $startDate = Carbon::parse($this->startDate)->format('Y-m-d');
-        $endDate = Carbon::parse($this->endDate)->format('Y-m-d');
+        $this->startDate = Carbon::parse($this->startDate)->format('Y-m-d');
+        $this->endDate = Carbon::parse($this->endDate)->format('Y-m-d');
         // dd($startDate , $endDate);
         if ($this->endDate && $this->startDate && $this->statusUpdate && $this->enableSearch)
         {
