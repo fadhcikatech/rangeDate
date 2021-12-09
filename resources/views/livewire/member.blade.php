@@ -5,9 +5,6 @@
             {{ session('message') }}
         </div>
     @endif
-
-   
-
     <hr>
 
     <div class="row">
@@ -85,6 +82,6 @@ $(document).ready( function () {
         to.value = new Date().toISOString().split('T')[0]
         from.dispatchEvent(new Event('input'))
         to.dispatchEvent(new Event('input'))
-        console.log($form)
+        
     })
 </script>

@@ -40,7 +40,7 @@ class Member extends Component
         $date = Carbon::createFromFormat('Y-m-d', $this->startDate);
         $afterParse = Carbon::parse($date);
         $newResult =  $afterParse->addDays(30)->format('Y-m-d');
-        $newResultMinDate =  $afterParse->subDays(30)->format('Y-m-d');
+        $afterParse->subDays(30)->format('Y-m-d');
         $this->minDate = $afterParse->format('Y-m-d');  
         
         $this->maxDate = $newResult;
