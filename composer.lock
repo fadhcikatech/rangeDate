@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cb9d84cf361e02f4ae66f68b08054cf",
+    "content-hash": "7e1a74edff7900afdd091c504682637d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1539,16 +1539,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.55.0",
+            "version": "2.55.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "b46249911cba301e9eb3f05af68cf2aacc1f9d05"
+                "reference": "8c2a18ce3e67c34efc1b29f64fe61304368259a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b46249911cba301e9eb3f05af68cf2aacc1f9d05",
-                "reference": "b46249911cba301e9eb3f05af68cf2aacc1f9d05",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8c2a18ce3e67c34efc1b29f64fe61304368259a2",
+                "reference": "8c2a18ce3e67c34efc1b29f64fe61304368259a2",
                 "shasum": ""
             },
             "require": {
@@ -1631,7 +1631,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-02T16:53:55+00:00"
+            "time": "2021-12-03T14:59:52+00:00"
         },
         {
             "name": "nikic/php-parser",
