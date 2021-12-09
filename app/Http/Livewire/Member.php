@@ -39,8 +39,8 @@ class Member extends Component
     {
         $date = Carbon::createFromFormat('Y-m-d', $this->startDate);
         $afterParse = Carbon::parse($date);
-        $newResult =  $afterParse->addDays(30)->format('Y-m-d');
-        $afterParse->subDays(30)->format('Y-m-d');
+        $newResult =  $afterParse->addDays(29)->format('Y-m-d');
+        $afterParse->subDays(29)->format('Y-m-d');
         $this->minDate = $afterParse->format('Y-m-d');  
         
         $this->maxDate = $newResult;
@@ -56,7 +56,7 @@ class Member extends Component
             return;
         }
         //di bulan yang berbeda 
-        if ($date->month !== now()->month )
+        if ($date->month !== now()->month)
         {
             
             $this->endDate = now()->format('Y-m-d');
@@ -65,16 +65,7 @@ class Member extends Component
                 'minDate' => $this->minDate
             ]);
             return;
-        }
-        if ($date->month == now()->addDays(30)->month)
-        {
-            $this->endDate = $newResult;
-            $this->dispatchBrowserEvent('changeDateValue' , [
-                'maxDate' => $this->maxDate,
-                'minDate' => $this->minDate
-            ]);
-            return;
-        }
+        } 
         $this->dispatchBrowserEvent('changeDateValue' , [
             'maxDate' => $this->maxDate,
             'minDate' => $this->minDate
