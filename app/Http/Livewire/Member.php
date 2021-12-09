@@ -63,9 +63,11 @@ class Member extends Component
 
     public function render()
     {
-        $minDate = Carbon::now()->subDays(30)->format('Y-m-d');
-        $maxDate = Carbon::now()->addDays(30)->format('Y-m-d');
-        // dd($maxDate);
+        $this->maxDate = Carbon::parse($this->startDate)->format('Y-m-d');
+        $this->minDate = Carbon::now()->subDays(30)->format('Y-m-d');
+        // $minDate = Carbon::now()->subDays(30)->format('Y-m-d');
+        // $maxDate = Carbon::now()->addDays(30)->format('Y-m-d');
+        // dd($this->maxDate);
         //query
         $query = User::query();
         $startDate = Carbon::parse($this->startDate)->format('Y-m-d');

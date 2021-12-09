@@ -21,7 +21,7 @@
         </div>
         <div class="md-3">
         <label for="from" class="tw-font-bold ml-3">From</label>
-                <input wire:ignore wire:key="4" type="date" wire:change="$emit('changeDateValue')"   max="{{$maxDate}}"  wire:model.defer="startDate" id="from"
+                <input wire:ignore wire:key="4" type="date" wire:change="$emit('changeDateValue')" max="{{$maxDate}}"  wire:model.defer="startDate" id="from"
                     class="form-control form-control-sm mx-sm-3" style="border-bottom: 1px solid rgb(123, 128, 154); border-radius: 0px !important;">
                     
                 <label for="to" class="tw-font-bold">To</label>
