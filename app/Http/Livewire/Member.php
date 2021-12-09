@@ -21,9 +21,7 @@ class Member extends Component
     public $endDate;
     public $minDate;
     public $maxDate;
-    public $model2;
-    public $model1;
-    
+
     protected $listeners = [
         'contactStored' => 'handleStored',
         'contactUpdated' => 'handleUpdated',
@@ -48,7 +46,7 @@ class Member extends Component
         $this->maxDate = $newResult;
         $this->endDate = $newResult;
 
-        if($date->month == now()->month)
+        if($date->month === now()->month)
         {
             $this->endDate = now()->format('Y-m-d');
             $this->dispatchBrowserEvent('changeDateValue' , [
@@ -62,30 +60,19 @@ class Member extends Component
             'minDate' => $this->minDate
         ]);
     }
-    // public function testLastDays(): void
-    // {
-    //     $model1 = User::create(['created_at' => Carbon::now()->subDays(29)]);
-    //     $model2 = User::create(['created_at' => Carbon::now()->subDays(30)]);
-    //     // $model3 = User::create(['created_at' => Carbon::now()->subDays(8)]);
 
-    //     $result = User::lastDays(29)->get();
-
-    //     $this->assertEquals(1, $result->count());
-    //     $this->assertEquals($model2->id, $result->first()->id);
-    // }
-    
     public function render()
     {
-        
-        // dd($query);
         $minDate = Carbon::now()->subDays(30)->format('Y-m-d');
         $maxDate = Carbon::now()->addDays(30)->format('Y-m-d');
+        // dd($maxDate);
         //query
         $query = User::query();
+        $startDate = Carbon::parse($this->startDate)->format('Y-m-d');
+        $endDate = Carbon::parse($this->endDate)->format('Y-m-d');
+        // dd($startDate , $endDate);
         if ($this->endDate && $this->startDate && $this->statusUpdate && $this->enableSearch)
         {
-            $startDate = Carbon::parse($this->startDate)->format('Y-m-d');
-            $endDate = Carbon::parse($this->endDate)->format('Y-m-d');
             $query->where(function ($last) use ($startDate, $endDate){
                 $last->whereBetween('users.created_at' , [$startDate , $endDate]);
             });
@@ -99,6 +86,7 @@ class Member extends Component
             });
         }
         // $detailData = $query()->get();
+
         
         return view('livewire.member' , [
             'member' => $this->search == null ?
